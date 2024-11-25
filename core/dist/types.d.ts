@@ -5,15 +5,16 @@ export interface DocumindArgs {
     llmParams?: LLMParams;
     maintainFormat?: boolean;
     model?: ModelOptions;
-    openaiAPIEndpoint?: string;
-    openaiAPIKey?: string;
+    openaiApiEndpoint?: string;
+    openaiApiKey?: string;
     outputDir?: string;
     pagesToConvertAsImages?: number | number[];
     tempDir?: string;
 }
 export declare enum ModelOptions {
     gpt_4o = "gpt-4o",
-    gpt_4o_mini = "gpt-4o-mini"
+    gpt_4o_mini = "gpt-4o-mini",
+    llamavision = "llamavision"
 }
 export interface Page {
     content: string;
@@ -33,7 +34,8 @@ export interface CompletionResponse {
     outputTokens: number;
 }
 export interface CompletionArgs {
-    apiKey: string;
+    openaiApiEndpoint: string;
+    openaiApiKey: string;
     imagePath: string;
     llmParams?: LLMParams;
     maintainFormat: boolean;

@@ -20,6 +20,7 @@ export const documind = async ({
   llmParams = {},
   maintainFormat = false,
   model = ModelOptions.gpt_4o_mini,
+  openaiEndpoint = "",
   openaiAPIKey = "",
   outputDir,
   pagesToConvertAsImages = -1,
@@ -34,6 +35,9 @@ export const documind = async ({
   llmParams = validateLLMParams(llmParams);
 
   // Validators
+  if (!openaiEndpoint || !openaiEndpoint.length) {
+    throw new Error("Missing OpenAI API Endpoint");
+  }
   if (!openaiAPIKey || !openaiAPIKey.length) {
     throw new Error("Missing OpenAI API key");
   }
@@ -97,6 +101,7 @@ export const documind = async ({
       const imagePath = path.join(tempDirectory, image);
       try {
         const { content, inputTokens, outputTokens } = await getCompletion({
+          apiEndpoint: openaiEndpoint,
           apiKey: openaiAPIKey,
           imagePath,
           llmParams,
@@ -124,6 +129,7 @@ export const documind = async ({
       const imagePath = path.join(tempDirectory, image);
       try {
         const { content, inputTokens, outputTokens } = await getCompletion({
+          apiEndpoint: openaiEndpoint,
           apiKey: openaiAPIKey,
           imagePath,
           llmParams,

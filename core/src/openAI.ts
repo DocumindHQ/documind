@@ -3,8 +3,8 @@ import { convertKeysToSnakeCase, encodeImageToBase64 } from "./utils";
 import axios from "axios";
 
 export const getCompletion = async ({
-  apiEndpoint,
-  apiKey,
+  openaiApiEndpoint,
+  openaiApiKey,
   imagePath,
   llmParams,
   maintainFormat,
@@ -43,7 +43,7 @@ export const getCompletion = async ({
 
   try {
     const response = await axios.post(
-      `${apiEndpoint}`,
+      `${openaiApiEndpoint}`,
       {
         messages,
         model,
@@ -51,7 +51,7 @@ export const getCompletion = async ({
       },
       {
         headers: {
-          Authorization: `Bearer ${apiKey}`,
+          Authorization: `Bearer ${openaiApiKey}`,
           "Content-Type": "application/json",
         },
       }

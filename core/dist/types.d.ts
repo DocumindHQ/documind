@@ -5,6 +5,7 @@ export interface DocumindArgs {
     llmParams?: LLMParams;
     maintainFormat?: boolean;
     model?: ModelOptions;
+    openaiAPIEndpoint?: string;
     openaiAPIKey?: string;
     outputDir?: string;
     pagesToConvertAsImages?: number | number[];

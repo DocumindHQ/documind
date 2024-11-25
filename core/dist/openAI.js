@@ -34,13 +34,13 @@ const getCompletion = async ({ apiKey, imagePath, llmParams, maintainFormat, mod
         ],
     });
     try {
-        const response = await axios_1.default.post("https://api.openai.com/v1/chat/completions", {
+        const response = await axios_1.default.post("https://${openaiEndpoint}/v1/chat/completions", {
             messages,
             model,
             ...(0, utils_1.convertKeysToSnakeCase)(llmParams ?? null),
         }, {
             headers: {
-                Authorization: `Bearer ${apiKey}`,
+                Authorization: `Bearer ${openaiapiKey}`,
                 "Content-Type": "application/json",
             },
         });

@@ -20,6 +20,9 @@ const documind = async ({ cleanup = true, concurrency = 10, filePath, llmParams 
     const startTime = new Date();
     llmParams = (0, utils_2.validateLLMParams)(llmParams);
     // Validators
+    if (!openaiAPIEndpoint || !openAPIEndpoint.length) {
+        throw new Error("Missing OpenAI API Endpoint");
+    }
     if (!openaiAPIKey || !openaiAPIKey.length) {
         throw new Error("Missing OpenAI API key");
     }

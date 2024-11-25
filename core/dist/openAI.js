@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCompletion = void 0;
 const utils_1 = require("./utils");
 const axios_1 = __importDefault(require("axios"));
-const getCompletion = async ({ openaiEndpoint, apiKey, imagePath, llmParams, maintainFormat, model, priorPage, }) => {
+const getCompletion = async ({ openaiEndpoint, openaiApiKey, imagePath, llmParams, maintainFormat, model, priorPage, }) => {
     const systemPrompt = `
     Convert the following document page to markdown.
     Return only the markdown with no explanation text. Do not include deliminators like '''markdown.
@@ -40,7 +40,7 @@ const getCompletion = async ({ openaiEndpoint, apiKey, imagePath, llmParams, mai
             ...(0, utils_1.convertKeysToSnakeCase)(llmParams ?? null),
         }, {
             headers: {
-                Authorization: `Bearer ${openaiapiKey}`,
+                Authorization: `Bearer ${openaiApiKey}`,
                 "Content-Type": "application/json",
             },
         });

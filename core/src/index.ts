@@ -19,7 +19,7 @@ export const documind = async ({
   filePath,
   llmParams = {},
   maintainFormat = false,
-  model = ModelOptions.gpt_4o_mini,
+  model = ModelOptions.llamavision,
   openaiEndpoint = "",
   openaiAPIKey = "",
   outputDir,

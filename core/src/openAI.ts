@@ -3,6 +3,7 @@ import { convertKeysToSnakeCase, encodeImageToBase64 } from "./utils";
 import axios from "axios";
 
 export const getCompletion = async ({
+  apiEndpoint,
   apiKey,
   imagePath,
   llmParams,
@@ -42,7 +43,7 @@ export const getCompletion = async ({
 
   try {
     const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
+      `${apiEndpoint}`,
       {
         messages,
         model,

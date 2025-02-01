@@ -25,9 +25,10 @@ const cleanSchemaFields = (fields) => {
 /**
  * Generates an auto schema from markdown content.
  * @param {string} markdown - The markdown content to generate the schema from.
+ * @param {string} model - The model to use for the schema generation.
  * @returns {Promise<Array>} - The auto-generated schema.
  */
-export const autogenerateSchema = async (markdown) => {
+export const autogenerateSchema = async (markdown, model) => {
 	const prompt = `
 Read the following markdown content and generate a schema of useful structured data that can be extracted from it. Follow these rules strictly:
 - The \`children\` field **must only be present if the \`type\` is \`object\` or \`array\`. It should never exist for other types.
@@ -52,7 +53,7 @@ Read the following markdown content and generate a schema of useful structured d
 
 		// Call OpenAI to generate schema
 		const completion = await openai.beta.chat.completions.parse({
-			model: "gpt-4o-2024-08-06", // Use the appropriate model
+			model: model ?? "gpt-4o-2024-08-06",
 			messages: [{ role: "user", content: prompt }],
 			response_format: zodResponseFormat(Schema, "event"),
 		});

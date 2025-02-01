@@ -12,6 +12,7 @@ import { getTemplate } from "./templates.js";
  * @param {string} [options.model] - The llm model to use if a base url is set.
  * @param {string} [options.parseModel] - The llm model to use for parsing the data.
  * @param {boolean} [options.autoSchema] - Option to auto-generate the schema.
+ * @param {string} [options.additionalPrompt] - Additional prompt to use for the extraction.
  * @returns {Promise<object>} - The result of the extraction, including pages, extracted data, and file name.
  */
 export async function extract({
@@ -21,6 +22,7 @@ export async function extract({
 	model,
 	parseModel,
 	autoSchema,
+	additionalPrompt,
 }) {
 	try {
 		if (!file) {
@@ -49,12 +51,17 @@ export async function extract({
 			);
 		}
 
+		if (additionalPrompt && typeof additionalPrompt !== "string") {
+			throw new Error("Additional prompt must be a string.");
+		}
+
 		const result = await extractData(
 			file,
 			finalSchema,
 			model,
 			parseModel,
 			autoSchema,
+			additionalPrompt,
 		);
 
 		return {

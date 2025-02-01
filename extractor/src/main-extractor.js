@@ -12,6 +12,7 @@ export const extractData = async (
 	model,
 	parseModel,
 	autoSchema,
+	additionalPrompt,
 ) => {
 	const prompt = `
     You are an expert in structured data extraction. Your task is to extract information from unstructured content and transform it into the specified structure. Follow these rules strictly:
@@ -19,7 +20,15 @@ export const extractData = async (
    1. Handle Missing or Undetermined Data:
    - If any field's information is missing, unknown, or cannot be determined, return its value as null.
    - **Do not use substitutes such as "unknown," "missing," or any other placeholder for missing or unknown data. The value **must** always be explicitly null.
-`;
+
+   2. Language and Text:
+   - Preserve the original language of the content
+   - Maintain original terminology and technical terms
+   - Keep proper nouns unchanged
+
+
+   ${additionalPrompt}
+   `;
 
 	try {
 		const { markdown, totalPages, fileName } = await convertFile(
@@ -30,7 +39,7 @@ export const extractData = async (
 		// Determine which schema to use
 		let finalSchema = schemaDefinition;
 		if (autoSchema) {
-			finalSchema = await autogenerateSchema(markdown);
+			finalSchema = await autogenerateSchema(markdown, parseModel);
 
 			if (!finalSchema) {
 				throw new Error("Failed to auto-generate schema.");

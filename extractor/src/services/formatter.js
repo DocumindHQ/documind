@@ -1,6 +1,6 @@
-import { convertFile } from '../converter.js';
-import { isPdfFile } from '../utils/pdfValidator.js';
-import { convertToText } from '../utils/convertToText.js';
+import { convertFile } from "../converter.js";
+import { convertToText } from "../utils/convertToText.js";
+import { isPdfFile } from "../utils/pdfValidator.js";
 
 /**
  * Extracts markdown content from a PDF.
@@ -10,26 +10,26 @@ import { convertToText } from '../utils/convertToText.js';
  * @returns {Promise<string>} - The markdown content.
  */
 const getMarkdown = async ({ file, model }) => {
-  try {
-    if (!file) {
-        throw new Error('File is required.');
-      }
-  
-      if (!isPdfFile(file)) {
-        throw new Error('File must be a PDF.');
-      }
+	try {
+		if (!file) {
+			throw new Error("File is required.");
+		}
 
-    const { markdown } = await convertFile(file, model);
+		if (!isPdfFile(file)) {
+			throw new Error("File must be a PDF.");
+		}
 
-    if (!markdown) {
-      throw new Error("Failed to extract markdown.");
-    }
+		const { markdown } = await convertFile(file, model);
 
-    return markdown;
-  } catch (error) {
-    console.error("Error extracting markdown:", error);
-    throw error;
-  }
+		if (!markdown) {
+			throw new Error("Failed to extract markdown.");
+		}
+
+		return markdown;
+	} catch (error) {
+		console.error("Error extracting markdown:", error);
+		throw error;
+	}
 };
 
 /**
@@ -40,19 +40,19 @@ const getMarkdown = async ({ file, model }) => {
  * @returns {Promise<string>} - The plain text content.
  */
 const getPlainText = async ({ file, model }) => {
-  try {
-    const markdown = await getMarkdown({ file, model });
-    return convertToText(markdown);
-  } catch (error) {
-    console.error("Error extracting plain text:", error);
-    throw error;
-  }
+	try {
+		const markdown = await getMarkdown({ file, model });
+		return convertToText(markdown);
+	} catch (error) {
+		console.error("Error extracting plain text:", error);
+		throw error;
+	}
 };
 
 /**
  * Formatter object for various formats.
  */
 export const formatter = {
-  markdown: getMarkdown,
-  plaintext: getPlainText,
+	markdown: getMarkdown,
+	plaintext: getPlainText,
 };

@@ -11,6 +11,7 @@ export interface DocumindArgs {
     tempDir?: string;
 }
 export declare enum ModelOptions {
+    gpt_o3_mini = "o3-mini",
     gpt_4o = "gpt-4o",
     gpt_4o_mini = "gpt-4o-mini",
     llava = "llava",

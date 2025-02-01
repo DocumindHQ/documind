@@ -4,14 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.documind = void 0;
-const utils_1 = require("./utils");
-const openAI_1 = require("./openAI");
-const types_1 = require("./types");
-const utils_2 = require("./utils");
-const fs_extra_1 = __importDefault(require("fs-extra"));
 const os_1 = __importDefault(require("os"));
 const path_1 = __importDefault(require("path"));
+const fs_extra_1 = __importDefault(require("fs-extra"));
 const p_limit_1 = __importDefault(require("p-limit"));
+const openAI_1 = require("./openAI");
+const types_1 = require("./types");
+const utils_1 = require("./utils");
+const utils_2 = require("./utils");
 const documind = async ({ cleanup = true, concurrency = 10, filePath, llmParams = {}, maintainFormat = false, model, //= ModelOptions.gpt_4o_mini,
 openaiAPIKey = "", outputDir, pagesToConvertAsImages = -1, tempDir = os_1.default.tmpdir(), }) => {
     const baseUrl = process.env.BASE_URL || "https://api.openai.com/v1";

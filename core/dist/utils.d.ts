@@ -1,4 +1,4 @@
-import { LLMParams } from "./types";
+import type { LLMParams } from "./types";
 export declare const validateLLMParams: (params: Partial<LLMParams>) => LLMParams;
 export declare const encodeImageToBase64: (imagePath: string) => Promise<string>;
 export declare const formatMarkdown: (text: string) => string;

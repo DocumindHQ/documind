@@ -4,13 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCompletion = void 0;
-const utils_1 = require("./utils");
 const axios_1 = __importDefault(require("axios"));
+const utils_1 = require("./utils");
 const getCompletion = async ({ apiKey, imagePath, llmParams, maintainFormat, model, priorPage, }) => {
-    const validModelsForCustomBaseUrl = [
-        "llava",
-        "llama3.2-vision",
-    ];
+    const validModelsForCustomBaseUrl = ["llava", "llama3.2-vision"];
     const validModelsForOpenAi = ["gpt-4o", "gpt-4o-mini"];
     const baseUrl = process.env.BASE_URL || "https://api.openai.com/v1";
     if (baseUrl !== "https://api.openai.com/v1") {
@@ -24,7 +21,7 @@ const getCompletion = async ({ apiKey, imagePath, llmParams, maintainFormat, mod
         }
     }
     const systemPrompt = `
-    Convert the following image/document  to markdown. 
+    Convert the following image/document  to markdown.
     Return only the markdown with no explanation text. Do not include deliminators like '''markdown.
     You must include all information on the page. Do not exclude headers, footers, or subtext.
   `;

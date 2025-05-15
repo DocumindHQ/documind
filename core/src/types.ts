@@ -5,6 +5,11 @@ export enum OpenAIModels {
   GPT_4_1_MINI = "gpt-4.1-mini",
 }
 
+export enum VLLMModels {
+  QWEN_2_5_3B_Instruct = "Qwen/Qwen2.5-VL-3B-Instruct",
+  QWEN_2_5_72B_Instruct = "Qwen/Qwen2.5-VL-72B-Instruct",
+}
+
 export enum LocalModels {
   //LLAVA = "llava",
   LLAMA3_2_VISION = "llama3.2-vision",
@@ -18,7 +23,7 @@ export enum GoogleModels {
   GEMINI_1_5_PRO = "gemini-1.5-pro",
 }
 
-export type ModelOptions = OpenAIModels | GoogleModels | LocalModels;
+export type ModelOptions = OpenAIModels | GoogleModels | LocalModels | VLLMModels;
 
 export interface DocumindArgs {
   cleanup?: boolean;

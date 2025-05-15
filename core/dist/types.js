@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GoogleModels = exports.LocalModels = exports.OpenAIModels = void 0;
+exports.GoogleModels = exports.LocalModels = exports.VLLMModels = exports.OpenAIModels = void 0;
 var OpenAIModels;
 (function (OpenAIModels) {
     OpenAIModels["GPT_4O"] = "gpt-4o";
@@ -8,6 +8,11 @@ var OpenAIModels;
     OpenAIModels["GPT_4_1"] = "gpt-4.1";
     OpenAIModels["GPT_4_1_MINI"] = "gpt-4.1-mini";
 })(OpenAIModels || (exports.OpenAIModels = OpenAIModels = {}));
+var VLLMModels;
+(function (VLLMModels) {
+    VLLMModels["QWEN_2_5_3B_Instruct"] = "Qwen/Qwen2.5-VL-3B-Instruct";
+    VLLMModels["QWEN_2_5_72B_Instruct"] = "Qwen/Qwen2.5-VL-72B-Instruct";
+})(VLLMModels || (exports.VLLMModels = VLLMModels = {}));
 var LocalModels;
 (function (LocalModels) {
     //LLAVA = "llava",
